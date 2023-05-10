@@ -1,0 +1,65 @@
+/* Set the font family for the entire page */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Center the heading */
+  h1 {
+    text-align: center;
+  }
+  
+  /* Center the quiz container and set its width */
+  #quiz-container {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    margin-bottom: 20px; /* added to adjust for the missing button */
+  }
+  
+  /* Set the style for each question */
+  #quiz {
+    margin-bottom: 20px;
+  }
+  
+  /* Set the style for each answer option */
+  label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  /* Set the style for the circle button on each answer option */
+  label span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    cursor: pointer;
+  }
+  
+  /* Change the color of the circle button when an option is selected */
+  label input[type="radio"]:checked + span {
+    background-color: #999;
+    color: #fff;
+  }
+  
+  /* Set the style for each possible answer with a box around it */
+  .choice {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Styles for the quiz answer choices when hovered over */
+  .choice:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }

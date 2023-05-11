@@ -25,6 +25,27 @@ const questions = [
 // Keep track of the current question being displayed
 let currentQuestion = 0;
 
+// Set the starting time for the timer
+let timeLeft = 30;
+
+// A function that displays the timer
+function showTimer() {
+  const timerElement = document.createElement("div");
+  timerElement.id = "timer";
+  timerElement.innerText = `Time left: ${timeLeft}s`;
+  document.querySelector("#quiz").appendChild(timerElement);
+
+  // Update the timer every second
+  const timerInterval = setInterval(() => {
+    timeLeft--;
+    timerElement.innerText = `Time left: ${timeLeft}s`;
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      quizComplete();
+    }
+  }, 1000);
+}
+
 // A function that displays a question and its choices
 function showQuestion() {
   const questionElement = document.createElement("div");
@@ -49,6 +70,9 @@ function showQuestion() {
   quizElement.innerHTML = "";
   quizElement.appendChild(questionElement);
   quizElement.appendChild(choicesElement);
+
+  // Show the timer
+  showTimer();
 }
 
 // A function that handles a choice being clicked

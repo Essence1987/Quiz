@@ -1,24 +1,44 @@
 // An array of objects that contains quiz questions and answers
 const questions = [
   {
-    question: "What is my name?",
-    choices: ["Holden", "Haley", "Jordan", "Kenzie"],
-    answer: 0
-  },
-  {
-    question: "How old am I?",
-    choices: ["18", "36", "24", "30"],
+    question: "The ______ statement evaluates a condition in parentheses and, if the result is true, executes a block of code.",
+    choices: ["else", "if", "let", "alert"],
     answer: 1
   },
   {
-    question: "What is my favorite holiday?",
-    choices: ["Christmas", "Halloween", "New Years", "Easter"],
+    question: "What is the comparison operator for Equals?",
+    choices: [">", "!=", "=", "=="],
+    answer: 3
+  },
+  {
+    question: "The OR operator is represented by what symbol?",
+    choices: ["||", "&&", "!", "??"],
     answer: 0
   },
   {
-    question: "How many kids do I have?",
-    choices: ["1", "3", "2", "4"],
+    question: "This is made of characters. It is always kept in double quotations?",
+    choices: ["Number", "String", "Boolean", "Object"],
+    answer: 1
+  },
+  {
+    question: "_____ is a non-primitive datatype in javascript which used to store multiple values.",
+    choices: ["var", "function", "arrays", "syntax"],
     answer: 2
+  },
+  {
+    question: "Events can be generated in two ways, one is by the user and another is by what?",
+    choices: ["API", "Listener", "Boolean", "Arrays"],
+    answer: 0
+  },
+  {
+    question: "Inside which HTML element do we put JavaScript?",
+    choices: ["<script>", "<js>", "<scripting>", "<javascript>"],
+    answer: 0
+  },
+  {
+    question: "A ________ is a plain JavaScript function passed to some method as an argument or option.",
+    choices: ["closure", "index", "executed", "callback"],
+    answer: 3
   }
 ];
 
@@ -26,7 +46,7 @@ const questions = [
 let currentQuestion = 0;
 
 // Set the starting time for the timer
-let timeLeft = 30;
+let timeLeft = 60;
 
 // A function that displays the timer
 function showTimer() {
@@ -146,8 +166,12 @@ function handleChoice(event) {
 
 // A function that displays a "quiz complete" message with the user's score
 function quizComplete() {
-  const quizElement = document.querySelector("#quiz");
-  quizElement.innerHTML = "";
-  const resultsElement = document.querySelector("#results");
-  resultsElement.innerHTML = "Quiz complete! Your score is " + score + ".";
-}
+    
+    const quizElement = document.querySelector("#quiz");
+    quizElement.innerHTML = "";
+  
+    const resultsElement = document.querySelector("#results");
+    resultsElement.innerHTML = "Quiz complete! Your score is " + score + ".";
+    resultsElement.classList.add("center");
+  }
+  

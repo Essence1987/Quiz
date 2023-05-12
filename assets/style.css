@@ -8,12 +8,20 @@ body {
     text-align: center;
   }
   
+  /* Center the start-container and set its width */
+  #start-container {
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
   /* Center the quiz container and set its width */
   #quiz-container {
     margin: auto;
     width: 500px;
     text-align: center;
-    margin-bottom: 20px; /* added to adjust for the missing button */
+    margin-bottom: 20px;
   }
   
   /* Set the style for each question */

@@ -173,5 +173,52 @@ function quizComplete() {
     const resultsElement = document.querySelector("#results");
     resultsElement.innerHTML = "Quiz complete! Your score is " + score + ".";
     resultsElement.classList.add("center");
+
+    clearInterval(timerInterval);
+
+  // Get the user's initials for the high score list
+  let initials = prompt("Congratulations on completing the quiz! Please enter your initials:");
+
+  // Create an object to store the user's score and initials
+  let score = {
+    initials: initials,
+    points: timeRemaining
+  };
+
+  // Add the user's score to the high score list
+  highScores.push(score);
+
+  // Sort the high score list in descending order by score
+  highScores.sort(function(a, b) {
+    return b.points - a.points;
+  });
+
+  // Truncate the high score list to the top 5 scores
+  highScores.splice(5);
+
+  // Save the updated high score list to local storage
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+
+  // Display the high score list
+  displayHighScores();
   }
   
+  function showHighScores() {
+    // Retrieve the highscores list from local storage
+    const highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+  
+    // If there are no highscores yet, display a message in the alert
+    if (highscores.length === 0) {
+      alert("No high scores yet!");
+      return;
+    }
+  
+    // Create a string with the top 5 highscores
+    let highScoresString = "Top 5 High Scores:\n\n";
+    for (let i = 0; i < highscores.length; i++) {
+      highScoresString += `${i+1}. ${highscores[i].initials} - ${highscores[i].score}\n`;
+    }
+  
+    // Display the highscores string in an alert
+    alert(highScoresString);
+  }

@@ -75,43 +75,57 @@ function showQuestion() {
   showTimer();
 }
 
+// A variable to store the start time of each question
+let questionStartTime;
+
+// A variable to store the user's score
+let score = 0;
+
 // A function that handles a choice being clicked
 function handleChoice(event) {
-  const selectedChoice = event.target;
-  const selectedAnswer = selectedChoice.dataset.answer;
-  const correctAnswer = questions[currentQuestion].answer;
-  const resultElement = document.createElement("div");
-  resultElement.classList.add("result");
-
-  // Check if the selected answer matches the correct answer
-  if (selectedAnswer == correctAnswer) {
-    resultElement.innerText = "Correct!";
-    resultElement.classList.add("correct");
-  } else {
-    resultElement.innerText = "Incorrect!";
-    resultElement.classList.add("incorrect");
+    const selectedChoice = event.target;
+    const selectedAnswer = selectedChoice.dataset.answer;
+    const correctAnswer = questions[currentQuestion].answer;
+    const resultElement = document.createElement("div");
+    resultElement.classList.add("result");
+  
+    // Check if the selected answer matches the correct answer
+    if (selectedAnswer == correctAnswer) {
+      const endTime = Date.now();
+    // Converts milliseconds to seconds
+      const timeTaken = (endTime - questionStartTime) / 1000;
+    // Add to the user's score based on how quickly they answered the question correctly.
+    if (timeTaken <=30) {  
+    score += 30 - Math.floor(timeTaken);
+    }
+      resultElement.innerText = "Correct!";
+      resultElement.classList.add("correct");
+      
+      // Move to the next question if there are more questions
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        quizComplete();
+      }
+      
+    } else {
+      resultElement.innerText = "Incorrect!";
+      resultElement.classList.add("incorrect");
+    }
+  
+    // Add the result element to the results container
+    const resultsElement = document.querySelector("#results");
+    resultsElement.innerHTML = "";
+    resultsElement.appendChild(resultElement);
   }
 
-  // Add the result element to the results container
-  const resultsElement = document.querySelector("#results");
-  resultsElement.innerHTML = "";
-  resultsElement.appendChild(resultElement);
-
-  // Move to the next question if there are more questions, or end the quiz if there are no more questions
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    showQuestion();
-  } else {
-    quizComplete();
-  }
-}
-
-// A function that displays a "quiz complete" message
+// A function that displays a "quiz complete" message with the user's score
 function quizComplete() {
   const quizElement = document.querySelector("#quiz");
   quizElement.innerHTML = "";
   const resultsElement = document.querySelector("#results");
-  resultsElement.innerHTML = "Quiz complete!";
+  resultsElement.innerHTML = "Quiz complete! Your score is " + score + ".";
 }
 
 // Display the first question when the page loads
